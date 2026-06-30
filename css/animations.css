@@ -1,0 +1,88 @@
+/* ============================================================
+   Gridfolio — Animations (animations.css)
+   ============================================================ */
+
+/* section card entrance */
+@keyframes cardIn {
+  from { opacity: 0; transform: translateY(8px) scale(0.98); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+.section-card, .item-card { animation: cardIn 0.32s var(--ease) both; }
+
+/* modal entrance */
+@keyframes overlayIn { from { opacity: 0; } to { opacity: 1; } }
+@keyframes modalIn {
+  from { opacity: 0; transform: translateY(14px) scale(0.96); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+.modal-overlay:not([hidden]) { animation: overlayIn 0.2s ease both; }
+.modal-overlay:not([hidden]) .modal { animation: modalIn 0.3s var(--ease) both; }
+
+/* toast handled via .show in app.css */
+
+/* ───────── export button → progress morph ───────── */
+.btn-export.exporting {
+  pointer-events: none;
+  background: var(--fill-2);
+  transition: width 0.3s var(--ease), background 0.3s var(--ease);
+}
+.btn-export.exporting .export-label { display: none; }
+.btn-export.exporting .export-progress {
+  display: flex; align-items: center; gap: 8px;
+  min-width: 120px; position: relative;
+}
+.btn-export .export-bar {
+  position: absolute; inset: 0; left: 0;
+  width: 0%;
+  background: var(--accent);
+  border-radius: inherit;
+  transition: width 0.2s linear;
+}
+.btn-export .export-pct {
+  position: relative; z-index: 1; font-size: 12px; font-weight: 600;
+  margin: 0 auto; color: #fff;
+}
+.btn-export.done .export-bar { width: 100% !important; background: var(--ok); }
+
+/* ───────── preview iframe fade-refresh ───────── */
+.preview-iframe { transition: opacity 0.2s ease; }
+.preview-wrapper.refreshing .preview-iframe { opacity: 0.8; }
+
+/* theme cross-fade flash on the wrapper */
+@keyframes themeFlash {
+  0% { opacity: 0.5; }
+  100% { opacity: 1; }
+}
+.preview-wrapper.theme-switch .preview-iframe { animation: themeFlash 0.4s ease; }
+
+/* drag ghost element */
+.drag-ghost {
+  position: fixed; z-index: 100; pointer-events: none;
+  background: var(--surface);
+  border: 1px solid var(--accent);
+  border-radius: var(--r);
+  padding: 11px 14px; font-size: 13.5px; font-weight: 500; color: var(--txt);
+  box-shadow: 0 12px 32px rgba(0,0,0,0.18);
+  opacity: 0.96;
+  display: flex; align-items: center; gap: 8px;
+}
+
+/* drop indicator line */
+.drop-line {
+  height: 2px; background: var(--accent); border-radius: 2px;
+  margin: -5px 0;
+}
+
+/* button press feedback */
+.btn:active, .btn-export:active, .btn-mini:active, .bp-btn:active, .theme-btn:active, .rail-btn:active, .section-type-card:active {
+  transform: scale(0.97);
+}
+
+/* reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}

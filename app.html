@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Foliqo — Portfolio Builder</title>
+  <meta name="description" content="Build and export a stunning developer/designer portfolio with no code." />
+  <link rel="icon" type="image/png" href="logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="css/app.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+</head>
+<body>
+
+<div class="mesh-bg" aria-hidden="true">
+  <span class="mesh-blob mesh-blob--1"></span>
+  <span class="mesh-blob mesh-blob--2"></span>
+  <span class="mesh-blob mesh-blob--3"></span>
+  <span class="mesh-blob mesh-blob--4"></span>
+</div>
+
+<!-- ───────────────── TOP BAR ───────────────── -->
+<header class="topbar" role="banner">
+  <div class="topbar__brand">
+    <a href="index.html" style="display:flex;align-items:center;gap:11px;color:inherit;text-decoration:none" aria-label="Foliqo home">
+    <img class="topbar__logo" src="logo.png" alt="" />
+    <span class="topbar__name">Foliqo</span>
+    </a>
+    <span class="topbar__divider" aria-hidden="true"></span>
+    <span class="topbar__project">Untitled portfolio</span>
+  </div>
+
+  <div class="topbar__actions">
+    <span class="autosave-pill" id="autosaveStatus" aria-live="polite">All changes saved</span>
+    <button class="btn btn--ghost" id="deployBtn" title="Deploy to GitHub Pages" aria-label="Deploy to GitHub Pages">
+      <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M10 0a10 10 0 00-3.16 19.49c.5.09.68-.22.68-.48l-.01-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.46-1.11-1.46-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.89 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.56 9.56 0 015 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.69-4.57 4.94.36.31.68.92.68 1.85l-.01 2.74c0 .27.18.58.69.48A10 10 0 0010 0z"/></svg>
+      <span>Deploy</span>
+    </button>
+    <button class="btn-export" id="exportBtn" aria-label="Export portfolio as ZIP">
+      <span class="export-label">
+        <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z"/></svg>
+        Export ZIP
+      </span>
+      <span class="export-progress" aria-live="polite"><span class="export-bar"></span><span class="export-pct">0%</span></span>
+    </button>
+  </div>
+</header>
+
+<!-- ───────────────── WORKSPACE ───────────────── -->
+<div class="studio">
+
+  <!-- LEFT: icon rail -->
+  <nav class="rail" id="rail" role="tablist" aria-label="Builder panels">
+    <button class="rail-btn active" data-panel="build" role="tab" aria-selected="true" title="Sections">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
+      <span>Sections</span>
+    </button>
+    <button class="rail-btn" data-panel="design" role="tab" aria-selected="false" title="Design">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="13.5" cy="6.5" r="2.5"/><circle cx="17.5" cy="10.5" r="2.5"/><circle cx="8.5" cy="7.5" r="2.5"/><circle cx="6.5" cy="12.5" r="2.5"/><path d="M12 22a10 10 0 110-20 8 8 0 010 16 2 2 0 000 4z"/></svg>
+      <span>Design</span>
+    </button>
+    <button class="rail-btn" data-panel="type" role="tab" aria-selected="false" title="Typography">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7V5h16v2M9 19h6M12 5v14"/></svg>
+      <span>Type</span>
+    </button>
+    <button class="rail-btn" data-panel="seo" role="tab" aria-selected="false" title="SEO">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+      <span>SEO</span>
+    </button>
+    <button class="rail-btn" data-panel="saves" role="tab" aria-selected="false" title="Save points">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h11l5 5v11a2 2 0 01-2 2z"/><path d="M17 21v-8H7v8M7 3v5h8"/></svg>
+      <span>Saves</span>
+    </button>
+  </nav>
+
+  <!-- MIDDLE: contextual panel -->
+  <section class="panel" aria-label="Editor panel">
+
+    <!-- BUILD -->
+    <div class="panel-view active" data-view="build">
+      <div class="panel-head">
+        <div><h1 class="panel-title">Sections</h1><p class="panel-sub">Add, edit, and drag to reorder.</p></div>
+        <button class="btn btn--accent btn--sm" id="addSectionBtn" aria-label="Add section">
+          <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z"/></svg>
+          Add
+        </button>
+      </div>
+      <div class="panel-body">
+        <ul class="section-list" id="sectionList" role="list" aria-label="Portfolio sections"></ul>
+      </div>
+    </div>
+
+    <!-- DESIGN -->
+    <div class="panel-view" data-view="design" hidden>
+      <div class="panel-head"><div><h1 class="panel-title">Design</h1><p class="panel-sub">Pick a theme, then fine-tune the palette.</p></div></div>
+      <div class="panel-body">
+        <h2 class="group-label">Theme</h2>
+        <div class="theme-grid" id="themeSwitcher" role="radiogroup" aria-label="Choose theme">
+          <button class="theme-btn active" data-theme="minimal" role="radio" aria-checked="true">
+            <span class="theme-swatch" style="--a:#2563eb;--b:#ffffff;--c:#1e293b"></span><span class="theme-name">Minimal</span>
+          </button>
+          <button class="theme-btn" data-theme="dark-pro" role="radio" aria-checked="false">
+            <span class="theme-swatch" style="--a:#38bdf8;--b:#0f172a;--c:#e2e8f0"></span><span class="theme-name">Dark Pro</span>
+          </button>
+          <button class="theme-btn" data-theme="glassmorphic" role="radio" aria-checked="false">
+            <span class="theme-swatch" style="--a:#a78bfa;--b:#1e1b4b;--c:#f5f3ff"></span><span class="theme-name">Glass</span>
+          </button>
+          <button class="theme-btn" data-theme="neon" role="radio" aria-checked="false">
+            <span class="theme-swatch" style="--a:#22d3ee;--b:#0a0a0f;--c:#f0fdfa"></span><span class="theme-name">Neon</span>
+          </button>
+          <button class="theme-btn" data-theme="typographic" role="radio" aria-checked="false">
+            <span class="theme-swatch" style="--a:#b91c1c;--b:#fefce8;--c:#1c1917"></span><span class="theme-name">Typographic</span>
+          </button>
+          <button class="theme-btn" data-theme="magazine" role="radio" aria-checked="false">
+            <span class="theme-swatch" style="--a:#db2777;--b:#fff1f2;--c:#27272a"></span><span class="theme-name">Magazine</span>
+          </button>
+        </div>
+
+        <h2 class="group-label">Palette</h2>
+        <div class="swatch-grid">
+          <label class="swatch-field"><input type="color" id="accentColor" class="swatch" value="#a78bfa" /><span class="swatch-meta"><span>Accent</span><output id="accentHex">#a78bfa</output></span></label>
+          <label class="swatch-field"><input type="color" id="bgColor" class="swatch" value="#ffffff" /><span class="swatch-meta"><span>Background</span><output id="bgHex">#ffffff</output></span></label>
+          <label class="swatch-field"><input type="color" id="textColor" class="swatch" value="#1e293b" /><span class="swatch-meta"><span>Text</span><output id="textHex">#1e293b</output></span></label>
+        </div>
+        <p class="hint-line" id="contrastHint" hidden></p>
+      </div>
+    </div>
+
+    <!-- TYPE -->
+    <div class="panel-view" data-view="type" hidden>
+      <div class="panel-head"><div><h1 class="panel-title">Typography</h1><p class="panel-sub">Choose a typeface from the curated set.</p></div></div>
+      <div class="panel-body">
+        <div class="field"><label for="fontSelect">Font family</label><select id="fontSelect" class="select"></select></div>
+        <div class="type-specimen" id="typeSpecimen">
+          <span class="type-specimen__big">Aa</span>
+          <p class="type-specimen__line">The quick brown fox jumps over the lazy dog.</p>
+          <p class="type-specimen__small">0123456789 — &amp; portfolio design</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- SEO -->
+    <div class="panel-view" data-view="seo" hidden>
+      <div class="panel-head"><div><h1 class="panel-title">SEO &amp; sharing</h1><p class="panel-sub">How your site looks in search and social.</p></div></div>
+      <div class="panel-body">
+        <div class="field"><label for="seoTitle">Page title</label><input type="text" id="seoTitle" class="input" placeholder="Jane Doe — Frontend Developer" /></div>
+        <div class="field"><label for="seoDesc">Meta description <span class="counter" id="seoDescCount">0/160</span></label><textarea id="seoDesc" class="input" rows="3" maxlength="200" placeholder="Short summary for search engines and social shares."></textarea>
+          <button class="btn-suggest" id="seoGenBtn" type="button"><svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M10 1.5l1.5 4.2 4.2 1.5-4.2 1.5L10 12.9 8.5 8.7 4.3 7.2l4.2-1.5L10 1.5zm5.6 9.4l.8 2.2 2.2.8-2.2.8-.8 2.2-.8-2.2-2.2-.8 2.2-.8.8-2.2z"/></svg>Suggest description</button>
+        </div>
+        <div class="field"><label for="seoOg">Social preview image URL</label><input type="url" id="seoOg" class="input" placeholder="https://…/preview.png" /></div>
+        <div class="seo-preview" aria-hidden="true">
+          <span class="seo-preview__label">Search preview</span>
+          <div class="seo-preview__card">
+            <span class="seo-preview__url">yoursite.com</span>
+            <span class="seo-preview__title" id="seoPreviewTitle">Your page title</span>
+            <span class="seo-preview__desc" id="seoPreviewDesc">Your meta description will appear here.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SAVES -->
+    <div class="panel-view" data-view="saves" hidden>
+      <div class="panel-head">
+        <div><h1 class="panel-title">Save points</h1><p class="panel-sub">Autosave runs continuously. Pin named snapshots here.</p></div>
+        <button class="btn btn--accent btn--sm" id="saveBtn" aria-label="Create save point">
+          <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M4 3a1 1 0 00-1 1v12a1 1 0 001 1h12a1 1 0 001-1V7.414A1 1 0 0016.707 6.707l-3.414-3.414A1 1 0 0012.586 3H4zm0 2h8.172L15 7.828V15H5V5z"/></svg>
+          New save
+        </button>
+      </div>
+      <div class="panel-body">
+        <ul class="savepoint-list" id="savepointList" role="list"></ul>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- RIGHT: preview -->
+  <section class="stage" aria-label="Live preview">
+    <div class="stage-toolbar">
+      <div class="breakpoint-toggle" id="breakpointToggle" role="radiogroup" aria-label="Preview breakpoint">
+        <button class="bp-btn active" data-bp="desktop" role="radio" aria-checked="true" aria-label="Desktop" title="Desktop">
+          <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M2 4a2 2 0 012-2h12a2 2 0 012 2v8a2 2 0 01-2 2H4a2 2 0 01-2-2V4zm2 0v8h12V4H4zm3 11h6l.4 1.5H6.6L7 15z"/></svg>
+          <span>Desktop</span>
+        </button>
+        <button class="bp-btn" data-bp="tablet" role="radio" aria-checked="false" aria-label="Tablet" title="Tablet">
+          <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M4 2a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2V4a2 2 0 00-2-2H4zm0 2h12v12H4V4zm5 11a1 1 0 102 0 1 1 0 00-2 0z"/></svg>
+          <span>Tablet</span>
+        </button>
+        <button class="bp-btn" data-bp="mobile" role="radio" aria-checked="false" aria-label="Mobile" title="Mobile">
+          <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path d="M7 2a2 2 0 00-2 2v12a2 2 0 002 2h6a2 2 0 002-2V4a2 2 0 00-2-2H7zm0 2h6v12H7V4zm2 10a1 1 0 102 0 1 1 0 00-2 0z"/></svg>
+          <span>Mobile</span>
+        </button>
+      </div>
+      <span class="stage-size" id="stageSize">Desktop</span>
+    </div>
+    <div class="stage-canvas">
+      <div class="preview-wrapper" id="previewWrapper" data-bp="desktop">
+        <div class="preview-chrome" aria-hidden="true"><span></span><span></span><span></span><div class="preview-chrome__url">yoursite.com</div></div>
+        <iframe class="preview-iframe" id="previewIframe" title="Portfolio preview" sandbox="allow-same-origin allow-scripts"></iframe>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ───────────────── ADD SECTION MODAL ───────────────── -->
+<div class="modal-overlay" id="addSectionModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" hidden>
+  <div class="modal">
+    <div class="modal__header">
+      <h2 class="modal__title" id="modalTitle">Add a section</h2>
+      <button class="modal__close" data-close-modal aria-label="Close">✕</button>
+    </div>
+    <div class="modal__grid" id="sectionTypeGrid"></div>
+  </div>
+</div>
+
+<!-- ───────────────── DEPLOY MODAL ───────────────── -->
+<div class="modal-overlay" id="deployModal" role="dialog" aria-modal="true" aria-labelledby="deployTitle" hidden>
+  <div class="modal modal--wide">
+    <div class="modal__header">
+      <h2 class="modal__title" id="deployTitle">Deploy to GitHub Pages</h2>
+      <button class="modal__close" data-close-modal aria-label="Close">✕</button>
+    </div>
+    <div class="modal__body deploy-steps">
+      <div class="gh-connected" id="githubConnect" hidden></div>
+      <ol>
+        <li><strong>Export your site.</strong> Click <em>Export ZIP</em> and unzip the download. You'll get <code>index.html</code> plus <code>css/</code> and <code>js/</code> folders.</li>
+        <li><strong>Create a repository.</strong> On GitHub, create a new public repo (e.g. <code>my-portfolio</code>).</li>
+        <li><strong>Push the files.</strong> Add the exported files to the repo root and push:
+          <pre><code id="deployCmds">git init
+git add .
+git commit -m "My portfolio"
+git branch -M main
+git remote add origin https://github.com/USER/my-portfolio.git
+git push -u origin main</code></pre>
+        </li>
+        <li><strong>Enable Pages.</strong> Repo → <em>Settings</em> → <em>Pages</em> → Source: <em>Deploy from a branch</em> → Branch: <code>main</code> / <code>root</code> → Save.</li>
+        <li><strong>Visit your site</strong> at <code id="deployUrl">https://USER.github.io/my-portfolio/</code> (allow a minute for the first build).</li>
+      </ol>
+      <a class="btn btn--accent" style="text-decoration:none;display:inline-flex" href="https://docs.github.com/pages/getting-started-with-github-pages" target="_blank" rel="noopener">Open GitHub Pages docs ↗</a>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="js/lib/zip.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/themes.js"></script>
+<script src="js/fonts.js"></script>
+<script src="js/suggest.js"></script>
+<script src="js/store.js"></script>
+<script src="js/render.js"></script>
+<script src="js/preview.js"></script>
+<script src="js/builder.js"></script>
+<script src="js/dragdrop.js"></script>
+<script src="js/export.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

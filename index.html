@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Foliqo — Build a stunning portfolio, no code</title>
+  <meta name="description" content="Foliqo is a drag-and-drop portfolio builder for developers and designers. Pick a theme, drop in your work, and export a deployable site — no code required." />
+  <meta property="og:title" content="Foliqo — Build a stunning portfolio, no code" />
+  <meta property="og:description" content="Drag-and-drop portfolio builder for developers and designers. Export a deployable site in minutes." />
+  <meta property="og:type" content="website" />
+  <link rel="icon" type="image/png" href="logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="stylesheet" href="css/site.css" />
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap site-header__inner">
+    <a class="brand" href="index.html" aria-label="Foliqo home">
+      <img src="logo.png" alt="" width="26" height="26" />
+      Foliqo
+    </a>
+    <nav class="site-nav" id="authNav" aria-label="Primary">
+      <a class="navlink hide-sm" href="contact.html">Contact</a>
+      <a class="navlink" href="auth.html">Sign in</a>
+      <a class="btn btn--accent" href="app.html">Get started</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <!-- HERO -->
+  <section class="hero wrap">
+    <span class="hero__eyebrow">✦ No code. Yours in minutes.</span>
+    <h1>Build a <span class="accentword">stunning portfolio</span><br/>without writing code.</h1>
+    <p class="hero__sub">Drag in your projects, skills, and experience. Pick a theme, preview live, and export a deployable site.</p>
+    <div class="hero__cta">
+      <a class="btn btn--accent btn--lg" href="app.html">Start building — it's free</a>
+      <a class="btn btn--lg" href="#features">See features</a>
+    </div>
+    <p class="hero__note">Works entirely in your browser. Your data never leaves your device.</p>
+
+    <!-- product mock -->
+    <div class="mock" aria-hidden="true">
+      <div class="mock__bar"><span></span><span></span><span></span></div>
+      <div class="mock__body">
+        <div class="mock__rail"><i></i><i></i><i></i><i></i><i></i></div>
+        <div class="mock__panel">
+          <b></b>
+          <div class="mock__line"></div>
+          <div class="mock__line"></div>
+          <div class="mock__line mock__line--sm"></div>
+          <div class="mock__line"></div>
+        </div>
+        <div class="mock__stage">
+          <div class="mock__page">
+            <div class="mock__dot"></div>
+            <div class="mock__h"></div>
+            <div class="mock__p"></div>
+            <div class="mock__p short"></div>
+            <div class="mock__cards"><div class="mock__card"></div><div class="mock__card"></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="section section--alt" id="features">
+    <div class="wrap">
+      <div class="section__head">
+        <h2>Everything you need to ship</h2>
+        <p>A focused toolset that gets you from blank page to live portfolio fast.</p>
+      </div>
+      <div class="bento">
+
+        <!-- big: drag & drop, with mini builder visual -->
+        <article class="tile tile--lg">
+          <div class="tile__viz tile__viz--builder" aria-hidden="true">
+            <div class="vz-row"><span class="vz-grip"></span><span class="vz-ico">🚀</span><span class="vz-bar"></span></div>
+            <div class="vz-row vz-row--lift"><span class="vz-grip"></span><span class="vz-ico">💼</span><span class="vz-bar"></span></div>
+            <div class="vz-row"><span class="vz-grip"></span><span class="vz-ico">⚡</span><span class="vz-bar"></span></div>
+            <div class="vz-row"><span class="vz-grip"></span><span class="vz-ico">📅</span><span class="vz-bar"></span></div>
+          </div>
+          <div class="tile__txt">
+            <h3>Drag-and-drop sections</h3>
+            <p>Build with Hero, Projects, Skills, Experience and Contact blocks — grab the handle and reorder in a snap.</p>
+          </div>
+        </article>
+
+        <!-- themes, with swatches -->
+        <article class="tile tile--accent">
+          <div class="tile__viz tile__viz--themes" aria-hidden="true">
+            <span class="sw" style="background:#ffffff;border:1px solid var(--line)"></span>
+            <span class="sw" style="background:#0f172a"></span>
+            <span class="sw" style="background:linear-gradient(135deg,#a78bfa,#60a5fa)"></span>
+            <span class="sw" style="background:#0a0a0f"></span>
+            <span class="sw" style="background:#fefce8"></span>
+            <span class="sw" style="background:#fff1f2"></span>
+          </div>
+          <div class="tile__txt"><h3>Six refined themes</h3><p>Tune colors &amp; fonts per theme.</p></div>
+        </article>
+
+        <!-- live preview, with mini device -->
+        <article class="tile">
+          <div class="tile__viz tile__viz--device" aria-hidden="true">
+            <div class="dv"><span class="dv-dot"></span><span class="dv-dot"></span><span class="dv-dot"></span></div>
+            <div class="dv-body"><span class="dv-l w70"></span><span class="dv-l w90"></span><span class="dv-l w50"></span></div>
+          </div>
+          <div class="tile__txt"><h3>Live responsive preview</h3><p>Desktop, tablet &amp; mobile, instantly.</p></div>
+        </article>
+
+        <!-- export -->
+        <article class="tile">
+          <div class="tile__badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg></div>
+          <div class="tile__txt"><h3>One-click export</h3><p>A complete HTML/CSS/JS site, ready for any static host.</p></div>
+        </article>
+
+        <!-- AI, with sample chips -->
+        <article class="tile tile--ai">
+          <div class="tile__viz tile__viz--chips" aria-hidden="true">
+            <span class="chip chip--solid">✦ Suggest</span>
+            <span class="chip">React</span>
+            <span class="chip chip--dash">+ TypeScript</span>
+            <span class="chip chip--dash">+ Node.js</span>
+          </div>
+          <div class="tile__txt"><h3>AI-assisted suggestions</h3><p>Taglines, descriptions, tags &amp; skill ideas as you build.</p></div>
+        </article>
+
+        <!-- SEO + autosave -->
+        <article class="tile">
+          <div class="tile__badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></div>
+          <div class="tile__txt"><h3>SEO &amp; autosave</h3><p>Meta tags, social preview, structured data — saved as you go.</p></div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- THEMES -->
+  <section class="section">
+    <div class="wrap">
+      <div class="section__head"><h2>Themes that set the tone</h2><p>Start from a polished base, then make it yours with custom colors and fonts.</p></div>
+      <div class="theme-strip">
+        <div class="theme-chip"><div class="theme-chip__sw" style="background:#ffffff;border-bottom:1px solid var(--line)"></div><div class="theme-chip__name">Minimal</div></div>
+        <div class="theme-chip"><div class="theme-chip__sw" style="background:#0f172a"></div><div class="theme-chip__name">Dark Pro</div></div>
+        <div class="theme-chip"><div class="theme-chip__sw" style="background:linear-gradient(135deg,#a78bfa,#60a5fa)"></div><div class="theme-chip__name">Glass</div></div>
+        <div class="theme-chip"><div class="theme-chip__sw" style="background:#0a0a0f"></div><div class="theme-chip__name">Neon</div></div>
+        <div class="theme-chip"><div class="theme-chip__sw" style="background:#fefce8"></div><div class="theme-chip__name">Typographic</div></div>
+        <div class="theme-chip"><div class="theme-chip__sw" style="background:#fff1f2"></div><div class="theme-chip__name">Magazine</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section--alt">
+    <div class="wrap cta-band">
+      <h2>Your portfolio is one drag away.</h2>
+      <p>No sign-up required to start. Build it, preview it, export it.</p>
+      <a class="btn btn--accent btn--lg" href="app.html">Open the builder</a>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap site-footer__inner">
+    <div class="brand" style="font-size:15px">
+      <img src="logo.png" alt="" width="20" height="20" />
+      Foliqo
+    </div>
+    <div class="site-footer__links">
+      <a href="app.html">Builder</a>
+      <a href="#features">Features</a>
+      <a href="contact.html">Contact</a>
+      <a href="auth.html">Sign in</a>
+    </div>
+    <div class="site-footer__meta">© 2026 Foliqo · Local-first, private by design</div>
+  </div>
+</footer>
+
+<script src="js/auth.js"></script>
+<script src="js/site.js"></script>
+</body>
+</html>
