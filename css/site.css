@@ -230,6 +230,7 @@ img { max-width: 100%; display: block; }
   .section { padding: 56px 0; }
   .mock__body { grid-template-columns: 1fr; }
   .mock__rail { display: none; }
+  .nav-user { display: none; }
 }
 
 /* ============================================================
