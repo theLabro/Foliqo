@@ -1,121 +1,204 @@
+<!--
+  GitHub showcase README for Foliqo.
+  Living in /docs, so asset paths use ../ (e.g. ../logo.png).
+  If you copy this to the repo ROOT as README.md, change ../logo.png -> logo.png
+  and ./<guide>.md -> docs/<guide>.md.
+-->
+
+<div align="center">
+
+<img src="/1782808025836.png" alt="Foliqo logo" width="96" height="96" />
+
 # Foliqo
 
-A drag-and-drop portfolio builder for developers and designers. Pick a theme, drop in
-your projects, skills, and experience, preview live across breakpoints, and export a
-complete, deployable HTML/CSS/JS site — no code required.
+### Build a stunning portfolio. No code.
 
-Built with vanilla HTML, CSS, and JavaScript. No build step, no framework, no backend.
+A drag-and-drop portfolio builder for developers &amp; designers — pick a theme, drop in
+your work, preview live, and export a deployable site in minutes.
 
-## Documentation
+<br/>
 
-Guides for adding real backend services (auth, database, contact delivery, one-click
-deploy) live in [`docs/`](docs/README.md):
+[![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white)](#)
+[![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3&logoColor=white)](#)
+[![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black)](#)
+[![No Dependencies](https://img.shields.io/badge/dependencies-0-brightgreen?style=flat-square)](#)
+[![No Build Step](https://img.shields.io/badge/build_step-none-blue?style=flat-square)](#)
+[![License: MIT](https://img.shields.io/badge/license-MIT-black?style=flat-square)](#-license)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-7c5cff?style=flat-square)](#-contributing)
 
-- [Backend overview](docs/backend-overview.md) · [Authentication](docs/authentication.md) · [Database schema](docs/database-schema.md)
-- Database: [Supabase](docs/supabase-setup.md) · [Firebase](docs/firebase-setup.md)
-- [Contact form delivery](docs/contact-form.md) · [One-click GitHub deploy](docs/github-oauth-deploy.md)
-- Deploy: [Netlify](docs/deployment-netlify.md) · [Vercel](docs/deployment-vercel.md) · [GitHub Pages / Cloudflare](docs/deployment-other.md)
-- [Environment variables & secrets](docs/environment-variables.md)
+<a href="#-quick-start"><b>Quick Start</b></a> &nbsp;·&nbsp;
+<a href="#-features"><b>Features</b></a> &nbsp;·&nbsp;
+<a href="README.md"><b>Docs</b></a> &nbsp;·&nbsp;
+<a href="deployment-netlify.md"><b>Deploy</b></a>
 
-## Pages
+</div>
 
-| File | Purpose |
-|------|---------|
-| `index.html` | Marketing landing page |
-| `app.html` | The portfolio builder (the core app) |
-| `auth.html` | Combined sign in / sign up (demo auth — see below) |
-| `contact.html` | Contact page with form |
-| `404.html` | Not-found page |
+---
 
-## Project structure
+## ✦ Overview
+
+**Foliqo** lets devs and designers ship a professional portfolio without writing a line
+of code. The whole studio runs in the browser — a glassless, Apple-clean interface with a
+live iframe preview on the right and contextual editor panels on the left. When you're
+done, export a complete, self-contained `HTML/CSS/JS` bundle that hosts anywhere.
+
+> 🔒 **Local-first & private** — your work lives in your browser. No account required,
+> nothing uploaded. Add a backend only if you want sync, real auth, or one-click deploy.
 
 ```
-.
-├── index.html        landing
-├── app.html          builder
-├── auth.html  contact.html  404.html
-├── logo.png           brand logo (also used as favicon)
-├── css/
-│   ├── site.css      landing / auth / contact / 404
-│   ├── app.css       builder UI
-│   └── animations.css
-└── js/
-    ├── auth.js       demo auth (local only)
-    ├── store.js  render.js  preview.js  builder.js
-    ├── dragdrop.js  export.js  themes.js  fonts.js  suggest.js
-    └── lib/zip.js    dependency-free ZIP writer
+✏️  Edit on the left   →   👀  Live preview on the right   →   📦  Export & deploy
 ```
 
-## Run locally
+## ✨ Features
 
-It's static — open `index.html` in a browser, or serve the folder:
+| | |
+|---|---|
+| 🧩 **Drag-and-drop sections** | Hero, Projects, Skills, Experience, Contact — reorder by dragging |
+| 🎨 **Six refined themes** | Minimal, Dark Pro, Glass, Neon, Typographic, Magazine — each fully tunable |
+| 🖥️ **Live responsive preview** | Instant updates across desktop / tablet / mobile |
+| ⚡ **Animated skill bars** | Proficiency meters that animate into view |
+| 🗂️ **Project & timeline builders** | Cards with tags, images, links + a chronological experience timeline |
+| 🌈 **Custom colors & fonts** | Per-theme palette with a live contrast guard + 20+ Google Fonts |
+| 🤖 **AI-assisted suggestions** | Generate taglines, descriptions, tags & skill ideas (runs locally) |
+| 🔍 **SEO built in** | Meta tags, Open Graph, JSON-LD structured data, live search preview |
+| 💾 **Autosave + save points** | Continuous local autosave with named snapshots |
+| 📦 **One-click export** | Download a complete static site as a ZIP — zero dependencies |
+| 🚀 **Deploy-ready** | GitHub-aware deploy flow + guides for Netlify, Vercel, Pages |
+| ♿ **Accessible & responsive** | Keyboard-navigable, reduced-motion aware, mobile-friendly |
+
+## 🎨 Themes
+
+<div align="center">
+
+| Minimal | Dark Pro | Glass | Neon | Typographic | Magazine |
+|:---:|:---:|:---:|:---:|:---:|:---:|
+| ⬜ | 🟦 | 🟪 | 🟦 | 🟨 | 🌸 |
+| clean & light | sleek dark | frosted depth | glowing edges | bold type | editorial |
+
+</div>
+
+Each theme exposes editable accent / background / text colors and its own typeface, with
+a built-in WCAG contrast check so your portfolio always stays readable.
+
+## 🖼️ Screenshots
+
+> _Add screenshots/GIFs here to make the page pop._ Suggested shots:
+> the landing page, the builder (left panels + live preview), and the theme switcher.
+
+```
+docs/screenshots/
+├── landing.png
+├── builder.png
+└── themes.gif
+```
+
+<!-- Example once added:
+<div align="center">
+  <img src="screenshots/builder.png" alt="The Foliqo builder" width="800" />
+</div>
+-->
+
+## 🚀 Quick Start
+
+No install, no build — it's a static site.
 
 ```bash
+# 1. clone
+git clone https://github.com/USER/foliqo.git
+cd foliqo
+
+# 2. serve (pick one)
 python -m http.server 8000
-# then visit http://localhost:8000
+#   or
+npx serve .
+
+# 3. open
+#   http://localhost:8000
 ```
 
-## Deploy
+Or just open `index.html` directly in your browser. Click **Get started** to launch the
+builder (`app.html`).
 
-Any static host works. The site needs no server-side runtime.
+## 🧱 Tech Stack
 
-**GitHub Pages**
-1. Push these files to the root of a public repo.
-2. Settings → Pages → Source: *Deploy from a branch* → `main` / `root`.
-3. Visit `https://USER.github.io/REPO/`.
+- **Vanilla JavaScript** — small, framework-free modules (`GF_Store`, `GF_Render`,
+  `GF_Builder`, `GF_Auth`, `GF_Suggest`, …)
+- **Modern CSS** — custom properties, grid, `color-mix()`, container-free responsive layout
+- **Zero dependencies** — including a tiny hand-rolled ZIP writer for export
+- **No build step** — ship the folder as-is to any static host
 
-**Netlify / Vercel / Cloudflare Pages**
-- Drag-and-drop the folder, or connect the repo.
-- No build command. Publish directory: project root.
-- `404.html` is served automatically as the not-found page.
+## 📁 Project Structure
 
-## Important: demo authentication
+```
+foliqo/
+├── index.html            # landing page
+├── app.html              # the builder
+├── auth.html             # combined sign in / sign up (+ Google/GitHub, guest)
+├── contact.html          # contact page
+├── 404.html              # not-found page
+├── logo.png              # brand mark / favicon
+├── css/
+│   ├── site.css          # landing / auth / contact
+│   ├── app.css           # builder UI
+│   └── animations.css
+├── js/
+│   ├── store.js  render.js  preview.js  builder.js
+│   ├── dragdrop.js  export.js  suggest.js  auth.js
+│   ├── themes.js  fonts.js  site.js
+│   └── lib/zip.js        # dependency-free ZIP writer
+└── docs/                 # backend + deployment guides
+```
 
-`js/auth.js` is a **client-side demo only**. Accounts live in the browser's
-`localStorage` and passwords are SHA-256 hashed — but this is **not secure
-authentication**. Anyone with access to the device can read or bypass it, and
-accounts don't sync across browsers or devices.
+## 🔌 Backend &amp; Deployment
 
-`auth.html` is a single combined sign in / sign up screen with three paths:
-- **Email + password** — local demo accounts.
-- **Continue with Google** — *simulated* (real OAuth needs a backend).
-- **Continue with GitHub** — reads your **public** GitHub profile via the GitHub
-  API (no login, no token). This personalises the builder's deploy flow
-  (prefilled username, repo-creation link) but does **not** grant push access.
-- **Continue as guest** — straight into the builder, no account.
+Foliqo is fully functional as a static site. When you're ready to add real auth, a
+database, contact delivery, or one-click deploy, the [`docs/`](README.md) folder has you
+covered:
 
-The builder (`app.html`) is intentionally **not gated** — guest access keeps it
-fully usable without an account.
+- 🧭 [Backend overview](backend-overview.md)
+- 🔐 [Authentication](authentication.md) (incl. Google / GitHub OAuth)
+- 🗃️ Database — [Supabase](supabase-setup.md) · [Firebase](firebase-setup.md)
+- ✉️ [Contact form delivery](contact-form.md)
+- 🚀 [One-click GitHub deploy](github-oauth-deploy.md)
+- 🌐 Hosting — [Netlify](deployment-netlify.md) · [Vercel / Pages / Cloudflare](deployment-other.md)
+- 🔑 [Environment variables &amp; secrets](environment-variables.md)
 
-**To add real authentication and true one-click deploy**, replace `js/auth.js`
-with a real provider and an OAuth backend:
-- [Supabase Auth](https://supabase.com/auth), [Firebase Auth](https://firebase.google.com/products/auth),
-  [Auth0](https://auth0.com), or [Clerk](https://clerk.com).
-- For GitHub push-from-browser, use the GitHub OAuth web/device flow through a
-  small serverless function (so the client secret + access token stay server-side),
-  then call the GitHub Contents API or trigger a GitHub Action to publish.
-- Keep the same `GF_Auth` interface (`signUp`, `signIn`, `signOut`, `currentUser`,
-  `githubConnect`) so the rest of the app is unaffected.
+**Deploy in 30 seconds:** drag the folder onto [Netlify](https://app.netlify.com/drop),
+or push to a repo and enable **GitHub Pages** (Settings → Pages → branch `main` / root).
 
-## Contact form delivery
+## 🗺️ Roadmap
 
-`contact.html` works with **no backend** by composing a `mailto:` link. To deliver
-messages to an inbox instead:
-1. Create a form at [Formspree](https://formspree.io) (or similar) and copy the endpoint.
-2. In `contact.html`, set `<form action="https://formspree.io/f/XXXX" method="POST">`.
-3. Set `USE_MAILTO = false` in the inline script (or remove it).
+- [ ] Undo / redo history
+- [ ] Reorder items within a section (projects, skills, timeline)
+- [ ] Project import/export as JSON
+- [ ] DEFLATE compression + image assets in export
+- [ ] Real auth + cross-device sync (Supabase / Firebase)
+- [ ] True one-click GitHub Pages publish
 
-Also update the placeholder email `hello@foliqo.app` in `contact.html`.
+## 🤝 Contributing
 
-## AI suggestions
+Contributions are welcome! 
 
-The "Suggest" buttons (`js/suggest.js`) run a **local** engine — a curated skills
-knowledge base, a skill co-occurrence graph, keyword extraction, and templated copy.
-No API key, no network calls, nothing leaves the browser. To upgrade to a real LLM,
-swap the `GF_Suggest` implementation to call your model through a serverless proxy
-(so the API key stays server-side).
+1. Fork the repo
+2. Create a branch — `git checkout -b feature/your-idea`
+3. Commit — `git commit -m "Add your idea"`
+4. Push — `git push origin feature/your-idea`
+5. Open a Pull Request
 
-## Privacy
+Since there's no build step, just open the files and go. Please keep the
+no-dependency, vanilla-JS spirit.
 
-All portfolio data and demo accounts are stored locally in the browser via
-`localStorage`. Nothing is uploaded.
+## 📄 License
+
+Released under the **MIT License** — free to use, modify, and distribute.
+Add a `LICENSE` file at the repo root to make it official.
+
+---
+
+<div align="center">
+
+Made with vanilla HTML, CSS &amp; JavaScript — no frameworks, no build, no fuss.
+
+<sub>⭐ If Foliqo helps you ship your portfolio, consider starring the repo.</sub>
+
+</div>
