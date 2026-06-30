@@ -72,7 +72,9 @@
   function currentUser() {
     if (!cachedSession) return null;
     var u = cachedSession.user;
-    var base = { name: u.user_metadata.display_name || u.email, email: u.email, provider: "password" };
+    var meta = u.user_metadata || {};
+    var resolvedName = meta.display_name || meta.full_name || meta.name || u.email;
+    var base = { name: resolvedName, email: u.email, provider: "password" };
     if (window.GF_githubProfile) Object.assign(base, window.GF_githubProfile);
     return base;
   }
