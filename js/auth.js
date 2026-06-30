@@ -1,32 +1,20 @@
 /* ============================================================
-   Gridfolio — Demo auth (auth.js)
-   ⚠ CLIENT-SIDE DEMO ONLY. No backend, no real security.
-   - Email/password accounts live in localStorage (SHA-256 hashed).
-   - Google sign-in is SIMULATED (no real OAuth without a backend).
-   - GitHub sign-in reads your PUBLIC profile via the GitHub API
-     (no auth) to personalise deploy — it does NOT grant push access.
-   For production auth + true one-click deploy, use a real provider
-   and an OAuth backend. See README.
+   Foliqo — Real auth (auth.js)
+   Wired to Supabase Auth. Requires js/supabase-client.js to be
+   loaded BEFORE this file (defines window.GF_supabase).
    ============================================================ */
 
 (function () {
-  var USERS_KEY = "gridfolio.users.v1";
-  var SESSION_KEY = "gridfolio.session.v1";
+  var cachedSession = null;
+  window.GF_supabase.auth.getSession().then(function (r) {
+    cachedSession = r.data.session;
+    renderAuthNav();
+  });
+  window.GF_supabase.auth.onAuthStateChange(function (_event, session) {
+    cachedSession = session;
+    renderAuthNav();
+  });
 
-  function getUsers() { try { return JSON.parse(localStorage.getItem(USERS_KEY) || "{}"); } catch (e) { return {}; } }
-  function saveUsers(u) { localStorage.setItem(USERS_KEY, JSON.stringify(u)); }
-  function getSession() { try { return JSON.parse(localStorage.getItem(SESSION_KEY) || "null"); } catch (e) { return null; } }
-  function setSession(s) { localStorage.setItem(SESSION_KEY, JSON.stringify(s)); }
-  function clearSession() { localStorage.removeItem(SESSION_KEY); }
-
-  async function hash(text) {
-    if (window.crypto && window.crypto.subtle) {
-      var buf = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(text));
-      return Array.from(new Uint8Array(buf)).map(function (b) { return b.toString(16).padStart(2, "0"); }).join("");
-    }
-    var h = 0; for (var i = 0; i < text.length; i++) { h = (h << 5) - h + text.charCodeAt(i); h |= 0; }
-    return "x" + (h >>> 0).toString(16);
-  }
   function validEmail(e) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e); }
   function escapeHtml(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
   function go() { window.location.href = "app.html"; }
@@ -36,60 +24,64 @@
     if (!name || !name.trim()) throw new Error("Please enter your name.");
     if (!validEmail(email)) throw new Error("Please enter a valid email address.");
     if (!password || password.length < 6) throw new Error("Password must be at least 6 characters.");
-    var users = getUsers();
-    if (users[email]) throw new Error("An account with this email already exists.");
-    users[email] = { name: name.trim(), hash: await hash(password), created: Date.now() };
-    saveUsers(users);
-    setSession({ email: email, name: name.trim(), provider: "password" });
-    return users[email];
+    var res = await window.GF_supabase.auth.signUp({
+      email: email,
+      password: password,
+      options: { data: { display_name: name.trim() } }
+    });
+    if (res.error) throw new Error(res.error.message);
+    return { name: name.trim(), email: email };
   }
 
   async function signIn(email, password) {
     email = String(email || "").trim().toLowerCase();
     if (!validEmail(email)) throw new Error("Please enter a valid email address.");
-    var users = getUsers();
-    var u = users[email];
-    if (!u) throw new Error("No account found with this email.");
-    if (u.hash !== await hash(password)) throw new Error("Incorrect password.");
-    setSession({ email: email, name: u.name, provider: "password" });
-    return u;
+    var res = await window.GF_supabase.auth.signInWithPassword({ email: email, password: password });
+    if (res.error) throw new Error(res.error.message);
+    var u = res.data.user;
+    return { name: u.user_metadata.display_name || email, email: email };
   }
 
-  // simulated Google sign-in (demo)
+  // real Google OAuth — redirects away and back via Supabase
   function googleSignIn() {
-    setSession({ name: "Google User", email: "", provider: "google" });
-    go();
+    window.GF_supabase.auth.signInWithOAuth({ provider: "google" });
   }
 
-  // GitHub: fetch real public profile, store as session (no push token)
+  // GitHub: still reads PUBLIC profile via the GitHub API for deploy personalisation
+  // (this is unrelated to login — kept as-is for now)
   async function githubConnect(username) {
     username = String(username || "").trim().replace(/^@/, "");
     if (!username) throw new Error("Enter your GitHub username.");
     var res;
     try { res = await fetch("https://api.github.com/users/" + encodeURIComponent(username)); }
     catch (e) { throw new Error("Network error — check your connection."); }
-    if (res.status === 404) throw new Error("No GitHub user named “" + username + "”.");
+    if (res.status === 404) throw new Error("No GitHub user named \u201c" + username + "\u201d.");
     if (!res.ok) throw new Error("Couldn't reach GitHub (rate limited?). Try again later.");
     var d = await res.json();
-    setSession({
-      name: d.name || d.login,
-      email: "",
-      provider: "github",
+    // store alongside the real session info, not replacing it
+    window.GF_githubProfile = {
       githubUser: d.login,
       avatar: d.avatar_url,
       profile: d.html_url
-    });
+    };
     go();
   }
 
-  function signOut() { clearSession(); }
-  function currentUser() { return getSession(); }
+  function signOut() { window.GF_supabase.auth.signOut(); }
+
+  function currentUser() {
+    if (!cachedSession) return null;
+    var u = cachedSession.user;
+    var base = { name: u.user_metadata.display_name || u.email, email: u.email, provider: "password" };
+    if (window.GF_githubProfile) Object.assign(base, window.GF_githubProfile);
+    return base;
+  }
 
   // ---- header nav state ----
   function renderAuthNav() {
     var el = document.getElementById("authNav");
     if (!el) return;
-    var s = getSession();
+    var s = currentUser();
     if (s) {
       var avatar = s.avatar ? '<img class="nav-avatar" src="' + escapeHtml(s.avatar) + '" alt="" />' : "";
       el.innerHTML =
@@ -152,9 +144,14 @@
       err.textContent = "";
       submit.disabled = true;
       try {
-        if (mode === "signup") await signUp(nameInput.value, form.email.value, passInput.value);
-        else await signIn(form.email.value, passInput.value);
-        go();
+        if (mode === "signup") {
+          await signUp(nameInput.value, form.email.value, passInput.value);
+          err.textContent = "Account created! Check your email to confirm, then sign in.";
+          submit.disabled = false;
+        } else {
+          await signIn(form.email.value, passInput.value);
+          go();
+        }
       } catch (ex) { err.textContent = ex.message; submit.disabled = false; }
     });
 
@@ -179,7 +176,7 @@
     async function doGhConnect() {
       ghErr.textContent = "";
       ghConnectBtn.disabled = true;
-      ghConnectBtn.textContent = "Connecting…";
+      ghConnectBtn.textContent = "Connecting\u2026";
       try { await githubConnect(ghInput.value); }
       catch (ex) { ghErr.textContent = ex.message; ghConnectBtn.disabled = false; ghConnectBtn.textContent = "Connect"; }
     }

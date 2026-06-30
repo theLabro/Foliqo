@@ -1,5 +1,5 @@
 /* ============================================================
-   Gridfolio — App bootstrap (app.js)
+   Foliqo — App bootstrap (app.js)
    Wires the top bar, appearance/SEO controls, autosave status,
    save points, deploy modal, and initialises all modules.
    ============================================================ */
