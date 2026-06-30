@@ -26,7 +26,6 @@ your work, preview live, and export a deployable site in minutes.
 [![License: MIT](https://img.shields.io/badge/license-MIT-black?style=flat-square)](#-license)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-7c5cff?style=flat-square)](#-contributing)
 
-<a href="#-quick-start"><b>Quick Start</b></a> &nbsp;·&nbsp;
 <a href="#-features"><b>Features</b></a> &nbsp;·&nbsp;
 <a href="README.md"><b>Docs</b></a> &nbsp;·&nbsp;
 <a href="deployment-netlify.md"><b>Deploy</b></a>
@@ -97,27 +96,6 @@ docs/screenshots/
   <img src="screenshots/builder.png" alt="The Foliqo builder" width="800" />
 </div>
 -->
-
-## 🚀 Quick Start
-
-No install, no build — it's a static site.
-
-```bash
-# 1. clone
-git clone https://github.com/USER/foliqo.git
-cd foliqo
-
-# 2. serve (pick one)
-python -m http.server 8000
-#   or
-npx serve .
-
-# 3. open
-#   http://localhost:8000
-```
-
-Or just open `index.html` directly in your browser. Click **Get started** to launch the
-builder (`app.html`).
 
 ## 🧱 Tech Stack
 
